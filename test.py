@@ -17,6 +17,7 @@ from kivymd.uix.button import MDRoundFlatButton
 from kivymd.uix.label import MDLabel
 
 
+
 KV = '''
 <ContentNavigationDrawer>:
     ScrollView:
@@ -42,7 +43,7 @@ KV = '''
 
 
 Screen:
-
+    
     MDToolbar:
         id: toolbar
         pos_hint: {"top": 1}
@@ -60,7 +61,7 @@ Screen:
             Screen:
                 name: "weather"
 
-                textInput: textInput
+                textinput: textinput
                 search: search
                 cError: cError
 
@@ -68,12 +69,13 @@ Screen:
                 cityCountry: cityCountry
                 
                 MDTextField:
-                    id: textInput
+                    id: textinput
                     size_hint: .54, .1
                     pos_hint: {'x': .2, 'y': .67}
                     hint_text: "Введите город для поиска"
                 MyButton:
                     id: search
+                    name: textinput.text
                     size_hint: .54, .08
                     pos_hint: {'x':.2, 'y': .6}
                     text: 'Поиск'
@@ -158,14 +160,22 @@ Screen:
                 nav_drawer: nav_drawer
 '''
 
-class MyButton(MDRoundFlatButton):
+class myclass(MDLabel):
+    def putData(self):
+        print(MDLabel.Rainfall.text)
+
+class MyButton(MDRoundFlatButton, ThemableBehavior):
     def on_release(self, *args):
-        print(textInput.text)
-        #my = weatherTest.getWeather(city)
-        #listWeather = my.geo_location()
-        #if listWeather:
-        #    self.ids.dateTime.text = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        #    print(listWeather)
+        my = weatherTest.getWeather(self.name)
+        listWeather = my.geo_location()
+        if listWeather:
+            #self.ids.dateTime.text = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), listWeather)
+            my = myclass()
+            my.putData()
+        else:
+            pass
+            
 
 class ContentNavigationDrawer(BoxLayout):
     screen_manager = ObjectProperty()
