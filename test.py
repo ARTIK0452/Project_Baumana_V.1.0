@@ -162,7 +162,7 @@ Screen:
 
 class myclass(MDLabel):
     def putData(self):
-        print(MDLabel.Rainfall.text)
+        print(MDLabel.cityCountry.text)
 
 class MyButton(MDRoundFlatButton, ThemableBehavior):
     def on_release(self, *args):
