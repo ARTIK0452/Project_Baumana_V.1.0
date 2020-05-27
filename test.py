@@ -57,10 +57,10 @@ Screen:
             id: screen_manager
             name: screen_manager
 
-            weatherScreen:
+            Screen:
                 name: "weather"
 
-                textinput: textinput
+                textInput: textInput
                 search: search
                 cError: cError
 
@@ -68,7 +68,7 @@ Screen:
                 cityCountry: cityCountry
                 
                 MDTextField:
-                    id: textinput
+                    id: textInput
                     size_hint: .54, .1
                     pos_hint: {'x': .2, 'y': .67}
                     hint_text: "Введите город для поиска"
@@ -138,13 +138,13 @@ Screen:
                         
                     
                     
-            historyScreen:
+            Screen:
                 name: "history"
                 MDLabel:
                     text: "Screen 2"
                     halign: "center"
 
-            <aboutScreen>:
+            Screen:
                 name: "about_me"
                 MDLabel:
                     text: "aa"
@@ -160,7 +160,7 @@ Screen:
 
 class MyButton(MDRoundFlatButton):
     def on_release(self, *args):
-        print(textinput.text)
+        print(textInput.text)
         #my = weatherTest.getWeather(city)
         #listWeather = my.geo_location()
         #if listWeather:
